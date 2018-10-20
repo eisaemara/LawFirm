@@ -9,7 +9,12 @@
   DBObjectType="table"
   DBObjectName="LOOKUP_DETAILS"
   AliasName="LookupDetails"
-  BindingStyle="OracleName">
+  BindingStyle="OracleName"
+  RowClass="com.lawfirm.model.entities.LookupDetailsImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Init|Access"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
   <Attribute
     Name="LookDeailsId"
     IsNotNull="true"
