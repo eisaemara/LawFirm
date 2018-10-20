@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE JboProject SYSTEM "jbo_03_01.dtd">
+<!---->
+<JboProject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="Model"
+  Version="12.2.1.9.14"
+  SeparateXMLFiles="true"
+  PackageName="com.lawfirm.model">
+  <DesignTime>
+    <Attr Name="_DTExpressionTypeChecking" Value="true"/>
+    <Attr Name="_jbo.TypeMapEntries" Value="Java"/>
+    <Attr Name="_jprName" Value="../../../../Model.jpr"/>
+    <Attr Name="_NamedConnection" Value="LawFirmDB"/>
+    <Attr Name="_useAnsiJoinSyntax" Value="true"/>
+    <Attr Name="_appModuleNames0" Value="com.lawfirm.model.services.LookupAM"/>
+  </DesignTime>
+  <Containee
+    Name="assoc"
+    PackageName="com.lawfirm.model.entities.assoc"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_AS" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="entities"
+    PackageName="com.lawfirm.model.entities"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_EO" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="services"
+    PackageName="com.lawfirm.model.services"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_AM" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="upd"
+    PackageName="com.lawfirm.model.views.lookup.upd"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_VO" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="VLinks"
+    PackageName="com.lawfirm.model.views.lookup.upd.VLinks"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_VL" Value="true"/>
+    </DesignTime>
+  </Containee>
+</JboProject>

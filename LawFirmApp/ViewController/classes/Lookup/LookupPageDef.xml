@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.9.14" id="LookupPageDef" Package="Lookup">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="LookupTypesVO" RangeSize="25" DataControl="LookupAMDataControl" id="LookupTypesVOIterator"/>
+    <iterator Binds="LookupDetailsVO" RangeSize="25" DataControl="LookupAMDataControl" id="LookupDetailsVOIterator"/>
+    <searchRegion Criteria="__ImplicitViewCriteria__" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="LookupTypesVOIterator" id="ImplicitViewCriteriaQuery" InitialQueryOverridden="true"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="LookupTypesVOIterator" id="LookupType">
+      <AttrNames>
+        <Item Value="LookupType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="LookupTypesVOIterator" id="Description">
+      <AttrNames>
+        <Item Value="Description"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="LookupTypesVOIterator" id="CreatedBy">
+      <AttrNames>
+        <Item Value="CreatedBy"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="LookupTypesVOIterator" id="CreationDate">
+      <AttrNames>
+        <Item Value="CreationDate"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="LookupTypesVOIterator" id="First" RequiresUpdateModel="true" Action="first"/>
+    <action IterBinding="LookupTypesVOIterator" id="Previous" RequiresUpdateModel="true" Action="previous"/>
+    <action IterBinding="LookupTypesVOIterator" id="Next" RequiresUpdateModel="true" Action="next"/>
+    <action IterBinding="LookupTypesVOIterator" id="Last" RequiresUpdateModel="true" Action="last"/>
+    <tree IterBinding="LookupDetailsVOIterator" id="LookupDetailsVO">
+      <nodeDefinition DefName="com.lawfirm.model.views.lookup.upd.LookupDetailsVO" Name="LookupDetailsVO0">
+        <AttrNames>
+          <Item Value="LookupCode"/>
+          <Item Value="LookupType"/>
+          <Item Value="Description"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="CreationDate"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

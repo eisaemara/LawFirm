@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE AppModule SYSTEM "jbo_03_01.dtd">
+<!---->
+<AppModule
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="LookupAM"
+  Version="12.2.1.9.14"
+  InheritPersonalization="merge"
+  ClearCacheOnRollback="true">
+  <ViewUsage
+    Name="LookupTypesVO"
+    ViewObjectName="com.lawfirm.model.views.lookup.upd.LookupTypesVO"/>
+  <ViewUsage
+    Name="LookupDetailsVO"
+    ViewObjectName="com.lawfirm.model.views.lookup.upd.LookupDetailsVO"/>
+  <ViewLinkUsage
+    Name="LookTypesLookupDetailsVlinks"
+    ViewLinkObjectName="com.lawfirm.model.views.lookup.upd.VLinks.LookTypesLookupDetailsVlinks"
+    SrcViewUsageName="com.lawfirm.model.services.LookupAM.LookupTypesVO"
+    DstViewUsageName="com.lawfirm.model.services.LookupAM.LookupDetailsVO"
+    Reversed="false"/>
+</AppModule>

@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BC4JConfig version="11.1" xmlns="http://xmlns.oracle.com/bc4j/configuration">
+   <AppModuleConfigBag ApplicationName="com.lawfirm.model.services.LookupAM">
+      <AppModuleConfig name="AppModuleLocal" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory"
+                       ApplicationName="com.lawfirm.model.services.LookupAM" jbo.project="com.lawfirm.model.Model">
+         <Database jbo.locking.mode="optimistic" JDBCDataSource="java:comp/env/jdbc/LawFirmDBDS" jbo.TypeMapEntries="Java"/>
+         <Security AppModuleJndiName="com.lawfirm.model.services.LookupAM"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="AppModuleShared" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory"
+                       ApplicationName="com.lawfirm.model.services.LookupAM" jbo.project="com.lawfirm.model.Model">
+         <AM-Pooling jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1"/>
+         <Database jbo.locking.mode="optimistic" JDBCDataSource="java:comp/env/jdbc/LawFirmDBDS" jbo.TypeMapEntries="Java"/>
+         <Security AppModuleJndiName="com.lawfirm.model.services.LookupAM"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+</BC4JConfig>
