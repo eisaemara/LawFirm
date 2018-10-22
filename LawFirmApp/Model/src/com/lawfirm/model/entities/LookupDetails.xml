@@ -31,7 +31,14 @@
     SQLType="NUMERIC"
     Type="java.math.BigDecimal"
     ColumnType="NUMBER"
-    TableName="LOOKUP_DETAILS"/>
+    TableName="LOOKUP_DETAILS">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.lawfirm.model.entities.LookupDetails.LookupType_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
   <Attribute
     Name="LookupCode"
     IsNotNull="true"
@@ -44,6 +51,12 @@
     <DesignTime>
       <Attr Name="_DisplaySize" Value="20"/>
     </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.lawfirm.model.entities.LookupDetails.LookupCode_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
   </Attribute>
   <Attribute
     Name="Description"
@@ -57,6 +70,12 @@
     <DesignTime>
       <Attr Name="_DisplaySize" Value="200"/>
     </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.lawfirm.model.entities.LookupDetails.Description_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
   </Attribute>
   <Attribute
     Name="CreatedBy"
@@ -144,4 +163,8 @@
       <Item Value="com.lawfirm.model.entities.LookupDetails.LookupType"/>
     </AttrArray>
   </Key>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.lawfirm.model.ModelBundle"/>
+  </ResourceBundle>
 </Entity>

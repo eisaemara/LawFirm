@@ -62,6 +62,26 @@
     EntityUsage="LookupTypes"
     AliasName="CREATED_BY"
     IsQueriable="false"/>
+  <ViewAttribute
+    Name="AmendDate"
+    IsUpdateable="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="AmendDate"
+    EntityUsage="LookupTypes"
+    AliasName="AMEND_DATE"/>
+  <ViewAttribute
+    Name="UsedScreen"
+    PrecisionRule="true"
+    EntityAttrName="UsedScreen"
+    EntityUsage="LookupTypes"
+    AliasName="USED_SCREEN"/>
+  <ViewAttribute
+    Name="Notes"
+    PrecisionRule="true"
+    EntityAttrName="Notes"
+    EntityUsage="LookupTypes"
+    AliasName="NOTES"/>
   <ViewLinkAccessor
     Name="LookupDetailsVO"
     ViewLink="com.lawfirm.model.views.lookup.upd.VLinks.LookTypesLookupDetailsVlinks"

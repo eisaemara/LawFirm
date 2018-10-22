@@ -48,5 +48,31 @@
     <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="LookupAMDataControl"/>
     <action IterBinding="LookupDetailsVOIterator" id="CreateInsert" RequiresUpdateModel="true"
             Action="createInsertRow"/>
+    <attributeValues IterBinding="LookupTypesVOIterator" id="AmendDate">
+      <AttrNames>
+        <Item Value="AmendDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="LookupTypesVOIterator" id="Notes">
+      <AttrNames>
+        <Item Value="Notes"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="LookupTypesVOIterator" id="UsedScreen">
+      <AttrNames>
+        <Item Value="UsedScreen"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="LookupTypesVOIterator" id="LookupTypesVO">
+      <nodeDefinition DefName="com.lawfirm.model.views.lookup.upd.LookupTypesVO" Name="LookupTypesVO0">
+        <AttrNames>
+          <Item Value="Description"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="AmendDate"/>
+          <Item Value="UsedScreen"/>
+          <Item Value="Notes"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
   </bindings>
 </pageDefinition>

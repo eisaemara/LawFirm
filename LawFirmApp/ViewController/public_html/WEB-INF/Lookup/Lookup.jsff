@@ -2,138 +2,168 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
                 xmlns:f="http://java.sun.com/jsf/core">
     <af:group id="g1">
-        <af:panelGroupLayout layout="vertical" id="pgl3">
-            <af:panelHeader text="LookupTypes" id="ph1">
-                <af:quickQuery label="Search" searchDesc="Search" id="qryId1"
-                               value="#{bindings.ImplicitViewCriteriaQuery.quickQueryDescriptor}"
-                               model="#{bindings.ImplicitViewCriteriaQuery.queryModel}"
-                               queryListener="#{bindings.ImplicitViewCriteriaQuery.processQuery}"></af:quickQuery>
-            </af:panelHeader>
-        </af:panelGroupLayout>
-        <af:panelBox text="PanelBox1" id="pb1">
-            <f:facet name="toolbar">
-                <af:group id="g2">
-                    <af:panelGroupLayout id="pgl4">
-                        <af:button actionListener="#{bindings.Commit.execute}" text="حفظ"
-                                   disabled="#{!bindings.Commit.enabled}" id="b5"/>
-                        <af:button actionListener="#{bindings.Rollback.execute}" text="الغاء"
-                                   disabled="#{!bindings.Rollback.enabled}" immediate="true" id="b6">
-                            <af:resetActionListener/>
-                        </af:button>
-                        <f:facet name="separator">
-                            <af:spacer width="10" height="10" id="s3"/>
-                        </f:facet>
+        <af:panelGroupLayout id="pgl5" styleClass="row">
+            <af:panelGroupLayout id="pgl6" styleClass="col-lg-7">
+                <af:panelGroupLayout id="pgl8" styleClass="box">
+                    <af:panelGroupLayout layout="vertical" id="pgl3">
+                        <af:quickQuery label="Search" searchDesc="Search" id="qryId1"
+                                       value="#{bindings.ImplicitViewCriteriaQuery.quickQueryDescriptor}"
+                                       model="#{bindings.ImplicitViewCriteriaQuery.queryModel}"
+                                       queryListener="#{bindings.ImplicitViewCriteriaQuery.processQuery}"/>
                     </af:panelGroupLayout>
-                </af:group>
-            </f:facet>
-            <af:panelFormLayout id="pfl1" fieldWidth="500px">
-                <af:inputText value="#{bindings.LookupType.inputValue}" label="#{bindings.LookupType.hints.label}"
-                              required="#{bindings.LookupType.hints.mandatory}"
-                              maximumLength="#{bindings.LookupType.hints.precision}"
-                              shortDesc="#{bindings.LookupType.hints.tooltip}" id="it1">
-                    <f:validator binding="#{bindings.LookupType.validator}"/>
-                </af:inputText>
-                <af:inputText value="#{bindings.Description.inputValue}" label="#{bindings.Description.hints.label}"
-                              required="#{bindings.Description.hints.mandatory}"
-                              maximumLength="#{bindings.Description.hints.precision}" contentStyle="width:100%"
-                              shortDesc="#{bindings.Description.hints.tooltip}" id="it2">
-                    <f:validator binding="#{bindings.Description.validator}"/>
-                </af:inputText>
-                <af:inputText value="#{bindings.CreatedBy.inputValue}" label="#{bindings.CreatedBy.hints.label}"
-                              required="#{bindings.CreatedBy.hints.mandatory}"
-                              maximumLength="#{bindings.CreatedBy.hints.precision}"
-                              shortDesc="#{bindings.CreatedBy.hints.tooltip}" id="it3">
-                    <f:validator binding="#{bindings.CreatedBy.validator}"/>
-                </af:inputText>
-                <af:inputDate value="#{bindings.CreationDate.inputValue}" label="#{bindings.CreationDate.hints.label}"
-                              required="#{bindings.CreationDate.hints.mandatory}"
-                              columns="#{bindings.CreationDate.hints.displayWidth}"
-                              shortDesc="#{bindings.CreationDate.hints.tooltip}" id="id1">
-                    <f:validator binding="#{bindings.CreationDate.validator}"/>
-                    <af:convertDateTime pattern="#{bindings.CreationDate.format}"/>
-                </af:inputDate>
-                <f:facet name="footer">
-                    <af:panelGroupLayout layout="vertical" id="pgl1">
-                        <af:panelGroupLayout layout="horizontal" id="pgl2">
-                            <af:button actionListener="#{bindings.First.execute}" text="First"
-                                       disabled="#{!bindings.First.enabled}" partialSubmit="true" id="b1"/>
-                            <af:button actionListener="#{bindings.Previous.execute}" text="Previous"
-                                       disabled="#{!bindings.Previous.enabled}" partialSubmit="true" id="b2"/>
-                            <af:button actionListener="#{bindings.Next.execute}" text="Next"
-                                       disabled="#{!bindings.Next.enabled}" partialSubmit="true" id="b3"/>
-                            <af:button actionListener="#{bindings.Last.execute}" text="Last"
-                                       disabled="#{!bindings.Last.enabled}" partialSubmit="true" id="b4"/>
-                            <f:facet name="separator">
-                                <af:spacer width="10" height="10" id="s1"/>
+                    <af:panelBox text="شاشة الأكواد" id="pb1" showDisclosure="false">
+                        <af:panelCollection id="pc2" styleClass="AFStretchWidth">
+                            <f:facet name="menus"/>
+                            <f:facet name="toolbar"/>
+                            <f:facet name="statusbar">
+                                <af:toolbar id="t4">
+                                    <af:panelGroupLayout id="pgl1">
+                                        <af:panelGroupLayout id="pgl2">
+                                            <af:outputText value="إجمالى عدد النتائج" id="ot7"/>
+                                            <af:outputText value="#{bindings.LookupTypesVO.estimatedRowCount}"
+                                                           id="ot8"/>
+                                                            <f:facet name="separator">
+                                            <af:spacer width="10" height="10" id="s3"/>
+                                        </f:facet>
+                                        </af:panelGroupLayout>
+                                       
+                                    </af:panelGroupLayout>
+                                </af:toolbar>
                             </f:facet>
-                        </af:panelGroupLayout>
-                    </af:panelGroupLayout>
-                </f:facet>
-            </af:panelFormLayout>
-        </af:panelBox>
+                            <af:table value="#{bindings.LookupTypesVO.collectionModel}" var="row"
+                                      rows="#{bindings.LookupTypesVO.rangeSize}"
+                                      emptyText="#{bindings.LookupTypesVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                      rowBandingInterval="0"
+                                      styleClass="AFStretchWidth"
+                                      contentDelivery="immediate"
+                                      selectedRowKeys="#{bindings.LookupTypesVO.collectionModel.selectedRow}"
+                                      selectionListener="#{bindings.LookupTypesVO.collectionModel.makeCurrent}"
+                                      rowSelection="single" fetchSize="10" id="t3" columnStretching="column:c9"
+                                      summary="Lookup Types table">
+                                <af:column rowHeader="true" headerText="م" width="12" id="c10" sortable="true">
+                                    <af:outputText value="#{vs.index + 1}" id="ot6"/>
+                                </af:column>
+                                <af:column headerText="#{bindings.LookupTypesVO.hints.Description.label}" id="c2"
+                                           sortProperty="#{bindings.LookupTypesVO.hints.Description.name}"
+                                           sortable="true">
+                                    <af:outputText value="#{row.Description}"
+                                                   shortDesc="#{bindings.LookupTypesVO.hints.Description.tooltip}"
+                                                   id="ot1"/>
+                                </af:column>
+                                <af:column headerText="#{bindings.LookupTypesVO.hints.CreatedBy.label}" id="c6"
+                                           width="80" sortProperty="#{bindings.LookupTypesVO.hints.CreatedBy.name}"
+                                           sortable="true">
+                                    <af:outputText value="#{row.CreatedBy}"
+                                                   shortDesc="#{bindings.LookupTypesVO.hints.CreatedBy.tooltip}"
+                                                   id="ot2"/>
+                                </af:column>
+                                <af:column headerText="#{bindings.LookupTypesVO.hints.AmendDate.label}" id="c7"
+                                           width="80" sortProperty="#{bindings.LookupTypesVO.hints.AmendDate.name}"
+                                           sortable="true">
+                                    <af:outputText value="#{row.AmendDate}"
+                                                   shortDesc="#{bindings.LookupTypesVO.hints.AmendDate.tooltip}"
+                                                   id="ot3">
+                                        <af:convertDateTime pattern="#{bindings.LookupTypesVO.hints.AmendDate.format}"/>
+                                    </af:outputText>
+                                    <f:facet name="filter">
+                                        <af:inputDate value="#{bindings.ImplicitViewCriteriaQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.AmendDate.value}"
+                                                      id="id1">
+                                            <af:convertDateTime pattern="#{bindings.LookupTypesVO.hints.AmendDate.format}"/>
+                                        </af:inputDate>
+                                    </f:facet>
+                                </af:column>
+                                <af:column headerText="#{bindings.LookupTypesVO.hints.UsedScreen.label}" id="c8"
+                                           sortProperty="#{bindings.LookupTypesVO.hints.UsedScreen.name}"
+                                           sortable="true">
+                                    <af:outputText value="#{row.UsedScreen}"
+                                                   shortDesc="#{bindings.LookupTypesVO.hints.UsedScreen.tooltip}"
+                                                   id="ot4"/>
+                                </af:column>
+                                <af:column headerText="#{bindings.LookupTypesVO.hints.Notes.label}" id="c9"
+                                           sortProperty="#{bindings.LookupTypesVO.hints.Notes.name}" sortable="true">
+                                    <af:outputText value="#{row.Notes}"
+                                                   shortDesc="#{bindings.LookupTypesVO.hints.Notes.tooltip}" id="ot5"/>
+                                </af:column>
+                            </af:table>
+                        </af:panelCollection>
+                    </af:panelBox>
+                    <f:facet name="separator">
+                        <af:spacer width="10" height="10" id="s1"/>
+                    </f:facet>
+                </af:panelGroupLayout>
+            </af:panelGroupLayout>
+            <af:panelGroupLayout id="pgl7" styleClass="col-lg-5">
+                <af:panelGroupLayout id="pgl9" styleClass="box">
+                    <af:panelCollection id="pc1" styleClass="AFStretchWidth" rendered="false">
+                        <f:facet name="menus"/>
+                        <f:facet name="toolbar">
+                            <af:toolbar id="t2">
+                                <af:button actionListener="#{bindings.CreateInsert.execute}" text="CreateInsert"
+                                           disabled="#{!bindings.CreateInsert.enabled}" id="b7"/>
+                            </af:toolbar>
+                        </f:facet>
+                        <f:facet name="statusbar"/>
+                        <af:table value="#{bindings.LookupDetailsVO.collectionModel}" var="row"
+                                  rows="#{bindings.LookupDetailsVO.rangeSize}"
+                                  emptyText="#{bindings.LookupDetailsVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                  styleClass="AFStretchWidth" rowBandingInterval="0"
+                                  selectedRowKeys="#{bindings.LookupDetailsVO.collectionModel.selectedRow}"
+                                  selectionListener="#{bindings.LookupDetailsVO.collectionModel.makeCurrent}"
+                                  rowSelection="single" fetchSize="#{bindings.LookupDetailsVO.rangeSize}" id="t1"
+                                  columnStretching="column:c3" partialTriggers="::b7">
+                            <?audit suppress oracle.adf.faces.compreqsummary?><?audit suppress oracle.adf.faces.tableneedsrowheader?>
+                            <af:column sortProperty="#{bindings.LookupDetailsVO.hints.LookupCode.name}" sortable="true"
+                                       headerText="#{bindings.LookupDetailsVO.hints.LookupCode.label}" id="c1">
+                                <af:inputText value="#{row.bindings.LookupCode.inputValue}"
+                                              label="#{bindings.LookupDetailsVO.hints.LookupCode.label}"
+                                              required="#{bindings.LookupDetailsVO.hints.LookupCode.mandatory}"
+                                              columns="#{bindings.LookupDetailsVO.hints.LookupCode.displayWidth}"
+                                              maximumLength="#{bindings.LookupDetailsVO.hints.LookupCode.precision}"
+                                              shortDesc="#{bindings.LookupDetailsVO.hints.LookupCode.tooltip}" id="it4">
+                                    <f:validator binding="#{row.bindings.LookupCode.validator}"/>
+                                </af:inputText>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.LookupDetailsVO.hints.Description.name}" sortable="true"
+                                       headerText="#{bindings.LookupDetailsVO.hints.Description.label}" id="c3">
+                                <af:inputText value="#{row.bindings.Description.inputValue}"
+                                              label="#{bindings.LookupDetailsVO.hints.Description.label}"
+                                              required="#{bindings.LookupDetailsVO.hints.Description.mandatory}"
+                                              columns="#{bindings.LookupDetailsVO.hints.Description.displayWidth}"
+                                              maximumLength="#{bindings.LookupDetailsVO.hints.Description.precision}"
+                                              shortDesc="#{bindings.LookupDetailsVO.hints.Description.tooltip}"
+                                              id="it6">
+                                    <f:validator binding="#{row.bindings.Description.validator}"/>
+                                </af:inputText>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.LookupDetailsVO.hints.CreatedBy.name}" sortable="true"
+                                       headerText="#{bindings.LookupDetailsVO.hints.CreatedBy.label}" id="c4">
+                                <af:inputText value="#{row.bindings.CreatedBy.inputValue}"
+                                              label="#{bindings.LookupDetailsVO.hints.CreatedBy.label}"
+                                              required="#{bindings.LookupDetailsVO.hints.CreatedBy.mandatory}"
+                                              columns="#{bindings.LookupDetailsVO.hints.CreatedBy.displayWidth}"
+                                              maximumLength="#{bindings.LookupDetailsVO.hints.CreatedBy.precision}"
+                                              shortDesc="#{bindings.LookupDetailsVO.hints.CreatedBy.tooltip}" id="it7">
+                                    <f:validator binding="#{row.bindings.CreatedBy.validator}"/>
+                                </af:inputText>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.LookupDetailsVO.hints.CreationDate.name}"
+                                       sortable="true" headerText="#{bindings.LookupDetailsVO.hints.CreationDate.label}"
+                                       id="c5">
+                                <af:inputDate value="#{row.bindings.CreationDate.inputValue}"
+                                              label="#{bindings.LookupDetailsVO.hints.CreationDate.label}"
+                                              required="#{bindings.LookupDetailsVO.hints.CreationDate.mandatory}"
+                                              columns="#{bindings.LookupDetailsVO.hints.CreationDate.displayWidth}"
+                                              shortDesc="#{bindings.LookupDetailsVO.hints.CreationDate.tooltip}"
+                                              id="id2">
+                                    <f:validator binding="#{row.bindings.CreationDate.validator}"/>
+                                    <af:convertDateTime pattern="#{bindings.LookupDetailsVO.hints.CreationDate.format}"/>
+                                </af:inputDate>
+                            </af:column>
+                        </af:table>
+                    </af:panelCollection>
+                </af:panelGroupLayout>
+            </af:panelGroupLayout>
+        </af:panelGroupLayout>
         <af:spacer width="10" height="10" id="s2"/>
-        <af:panelCollection id="pc1" styleClass="AFStretchWidth">
-            <f:facet name="menus"/>
-            <f:facet name="toolbar">
-                <af:toolbar id="t2">
-                    <af:button actionListener="#{bindings.CreateInsert.execute}" text="CreateInsert"
-                               disabled="#{!bindings.CreateInsert.enabled}" id="b7"/>
-                </af:toolbar>
-            </f:facet>
-            <f:facet name="statusbar"/>
-            <af:table value="#{bindings.LookupDetailsVO.collectionModel}" var="row"
-                      rows="#{bindings.LookupDetailsVO.rangeSize}"
-                      emptyText="#{bindings.LookupDetailsVO.viewable ? 'No data to display.' : 'Access Denied.'}"
-                      styleClass="AFStretchWidth" rowBandingInterval="0"
-                      selectedRowKeys="#{bindings.LookupDetailsVO.collectionModel.selectedRow}"
-                      selectionListener="#{bindings.LookupDetailsVO.collectionModel.makeCurrent}" rowSelection="single"
-                      fetchSize="#{bindings.LookupDetailsVO.rangeSize}" id="t1" columnStretching="column:c3"
-                      partialTriggers="::b7">
-                <af:column sortProperty="#{bindings.LookupDetailsVO.hints.LookupCode.name}" sortable="true"
-                           headerText="#{bindings.LookupDetailsVO.hints.LookupCode.label}" id="c1">
-                    <af:inputText value="#{row.bindings.LookupCode.inputValue}"
-                                  label="#{bindings.LookupDetailsVO.hints.LookupCode.label}"
-                                  required="#{bindings.LookupDetailsVO.hints.LookupCode.mandatory}"
-                                  columns="#{bindings.LookupDetailsVO.hints.LookupCode.displayWidth}"
-                                  maximumLength="#{bindings.LookupDetailsVO.hints.LookupCode.precision}"
-                                  shortDesc="#{bindings.LookupDetailsVO.hints.LookupCode.tooltip}" id="it4">
-                        <f:validator binding="#{row.bindings.LookupCode.validator}"/>
-                    </af:inputText>
-                </af:column>
-                <af:column sortProperty="#{bindings.LookupDetailsVO.hints.Description.name}" sortable="true"
-                           headerText="#{bindings.LookupDetailsVO.hints.Description.label}" id="c3">
-                    <af:inputText value="#{row.bindings.Description.inputValue}"
-                                  label="#{bindings.LookupDetailsVO.hints.Description.label}"
-                                  required="#{bindings.LookupDetailsVO.hints.Description.mandatory}"
-                                  columns="#{bindings.LookupDetailsVO.hints.Description.displayWidth}"
-                                  maximumLength="#{bindings.LookupDetailsVO.hints.Description.precision}"
-                                  shortDesc="#{bindings.LookupDetailsVO.hints.Description.tooltip}" id="it6">
-                        <f:validator binding="#{row.bindings.Description.validator}"/>
-                    </af:inputText>
-                </af:column>
-                <af:column sortProperty="#{bindings.LookupDetailsVO.hints.CreatedBy.name}" sortable="true"
-                           headerText="#{bindings.LookupDetailsVO.hints.CreatedBy.label}" id="c4">
-                    <af:inputText value="#{row.bindings.CreatedBy.inputValue}"
-                                  label="#{bindings.LookupDetailsVO.hints.CreatedBy.label}"
-                                  required="#{bindings.LookupDetailsVO.hints.CreatedBy.mandatory}"
-                                  columns="#{bindings.LookupDetailsVO.hints.CreatedBy.displayWidth}"
-                                  maximumLength="#{bindings.LookupDetailsVO.hints.CreatedBy.precision}"
-                                  shortDesc="#{bindings.LookupDetailsVO.hints.CreatedBy.tooltip}" id="it7">
-                        <f:validator binding="#{row.bindings.CreatedBy.validator}"/>
-                    </af:inputText>
-                </af:column>
-                <af:column sortProperty="#{bindings.LookupDetailsVO.hints.CreationDate.name}" sortable="true"
-                           headerText="#{bindings.LookupDetailsVO.hints.CreationDate.label}" id="c5">
-                    <af:inputDate value="#{row.bindings.CreationDate.inputValue}"
-                                  label="#{bindings.LookupDetailsVO.hints.CreationDate.label}"
-                                  required="#{bindings.LookupDetailsVO.hints.CreationDate.mandatory}"
-                                  columns="#{bindings.LookupDetailsVO.hints.CreationDate.displayWidth}"
-                                  shortDesc="#{bindings.LookupDetailsVO.hints.CreationDate.tooltip}" id="id2">
-                        <f:validator binding="#{row.bindings.CreationDate.validator}"/>
-                        <af:convertDateTime pattern="#{bindings.LookupDetailsVO.hints.CreationDate.format}"/>
-                    </af:inputDate>
-                </af:column>
-            </af:table>
-        </af:panelCollection>
     </af:group>
 </ui:composition>

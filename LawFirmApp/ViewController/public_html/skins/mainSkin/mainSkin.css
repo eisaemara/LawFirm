@@ -1,0 +1,90 @@
+@charset "UTF-8";
+
+@import url('../../resources/css/flexboxgrid.min.css');
+
+/**ADFFaces_Skin_File / DO NOT REMOVE**/
+@namespace af "http://xmlns.oracle.com/adf/faces/rich";
+@namespace dvt "http://xmlns.oracle.com/dss/adf/faces";
+
+body {
+    height: 100%;
+    background-color: White !important;
+    background-image: none !important;
+}
+
+.container {
+    display: block;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+@media (min-width:768px) {
+    .container {
+        width: 750px;
+    }
+}
+
+@media (min-width:992px) {
+    .container {
+        width: 970px;
+    }
+}
+
+@media (min-width:1200px) {
+    .container {
+        width: 1170px;
+    }
+}
+
+.navbar {
+    display: block;
+    position: relative;
+    min-height: 80px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+}
+
+.navbar-default {
+    background-color: #f8f8f8;
+    border-color: #e7e7e7;
+}
+
+.jumbotron {
+    box-sizing: border-box;
+    display: block;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    color: inherit;
+    background-color: #eee;
+}
+@media (min-width:768px) {
+    .navbar {
+        border-radius: 4px;
+    }
+}
+
+@media (min-width:768px) {
+    .navbar-header {
+        float: left;
+    }
+}
+
+af|panelHeader.page-header {
+    padding-bottom: 9px;
+    margin: 25px 0 20px;
+    border-bottom: 1px solid #eee;
+    box-sizing: border-box;
+}
+
+af|panelHeader.page-header af|panelHeader::title0 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+.af_panelHeader_title-spacer-cell
+{
+height: 10px;
+}
