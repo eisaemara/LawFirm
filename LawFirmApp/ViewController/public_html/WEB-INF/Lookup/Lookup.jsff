@@ -5,16 +5,12 @@
         <af:panelGroupLayout id="pgl5" styleClass="row">
             <af:panelGroupLayout id="pgl6" styleClass="col-lg-7">
                 <af:panelGroupLayout id="pgl8" styleClass="box">
-                    <af:panelGroupLayout layout="vertical" id="pgl3">
-                        <af:quickQuery label="Search" searchDesc="Search" id="qryId1"
-                                       value="#{bindings.ImplicitViewCriteriaQuery.quickQueryDescriptor}"
-                                       model="#{bindings.ImplicitViewCriteriaQuery.queryModel}"
-                                       queryListener="#{bindings.ImplicitViewCriteriaQuery.processQuery}"/>
-                    </af:panelGroupLayout>
                     <af:panelBox text="شاشة الأكواد" id="pb1" showDisclosure="false">
                         <af:panelCollection id="pc2" styleClass="AFStretchWidth">
                             <f:facet name="menus"/>
-                            <f:facet name="toolbar"/>
+                            <f:facet name="toolbar">
+                                
+                            </f:facet>
                             <f:facet name="statusbar">
                                 <af:toolbar id="t4">
                                     <af:panelGroupLayout id="pgl1">
@@ -22,20 +18,17 @@
                                             <af:outputText value="إجمالى عدد النتائج" id="ot7"/>
                                             <af:outputText value="#{bindings.LookupTypesVO.estimatedRowCount}"
                                                            id="ot8"/>
-                                                            <f:facet name="separator">
-                                            <af:spacer width="10" height="10" id="s3"/>
-                                        </f:facet>
+                                            <f:facet name="separator">
+                                                <af:spacer width="10" height="10" id="s3"/>
+                                            </f:facet>
                                         </af:panelGroupLayout>
-                                       
                                     </af:panelGroupLayout>
                                 </af:toolbar>
                             </f:facet>
                             <af:table value="#{bindings.LookupTypesVO.collectionModel}" var="row"
                                       rows="#{bindings.LookupTypesVO.rangeSize}"
                                       emptyText="#{bindings.LookupTypesVO.viewable ? 'No data to display.' : 'Access Denied.'}"
-                                      rowBandingInterval="0"
-                                      styleClass="AFStretchWidth"
-                                      contentDelivery="immediate"
+                                      rowBandingInterval="0" styleClass="AFStretchWidth" contentDelivery="immediate"
                                       selectedRowKeys="#{bindings.LookupTypesVO.collectionModel.selectedRow}"
                                       selectionListener="#{bindings.LookupTypesVO.collectionModel.makeCurrent}"
                                       rowSelection="single" fetchSize="10" id="t3" columnStretching="column:c9"
@@ -84,8 +77,32 @@
                                     <af:outputText value="#{row.Notes}"
                                                    shortDesc="#{bindings.LookupTypesVO.hints.Notes.tooltip}" id="ot5"/>
                                 </af:column>
+                                <af:column id="c11" headerText=" ">
+                                    <af:panelGroupLayout id="pgl4" layout="horizontal">
+                                        <af:button text="تعديل" id="b2">
+                                            <af:showPopupBehavior popupId=":::p1"/>
+                                        </af:button>
+                                        <af:spacer width="10" height="10" id="s4"/>
+                                        <af:button text="حذف" id="b3"/>
+                                    </af:panelGroupLayout>
+                                </af:column>
                             </af:table>
+                            <f:facet name="secondaryToolbar">
+                            <af:toolbar id="t6">
+                                    <af:button text="إضافه نوع جديد" id="b1"/>
+                                </af:toolbar>
+                            </f:facet>
                         </af:panelCollection>
+                        <f:facet name="toolbar">
+                            <af:toolbar id="t5">
+                                <af:panelGroupLayout layout="vertical" id="pgl3">
+                                    <af:quickQuery label="Search" searchDesc="Search" id="qryId1"
+                                                   value="#{bindings.ImplicitViewCriteriaQuery.quickQueryDescriptor}"
+                                                   model="#{bindings.ImplicitViewCriteriaQuery.queryModel}"
+                                                   queryListener="#{bindings.ImplicitViewCriteriaQuery.processQuery}"/>
+                                </af:panelGroupLayout>
+                            </af:toolbar>
+                        </f:facet>
                     </af:panelBox>
                     <f:facet name="separator">
                         <af:spacer width="10" height="10" id="s1"/>
@@ -165,5 +182,40 @@
             </af:panelGroupLayout>
         </af:panelGroupLayout>
         <af:spacer width="10" height="10" id="s2"/>
+        <af:popup childCreation="deferred" autoCancel="disabled" id="p1">
+            <af:dialog id="d1" title="تفاصيل الكود">
+                <af:panelFormLayout id="pfl1">
+                    <af:inputText value="#{bindings.LookupType.inputValue}" label="#{bindings.LookupType.hints.label}"
+                                  required="#{bindings.LookupType.hints.mandatory}"
+                                  columns="#{bindings.LookupType.hints.displayWidth}"
+                                  maximumLength="#{bindings.LookupType.hints.precision}"
+                                  shortDesc="#{bindings.LookupType.hints.tooltip}" id="it1">
+                        <f:validator binding="#{bindings.LookupType.validator}"/>
+                    </af:inputText>
+                    <af:inputText value="#{bindings.Description.inputValue}" label="#{bindings.Description.hints.label}"
+                                  required="#{bindings.Description.hints.mandatory}"
+                                  columns="#{bindings.Description.hints.displayWidth}"
+                                  maximumLength="#{bindings.Description.hints.precision}"
+                                  shortDesc="#{bindings.Description.hints.tooltip}" id="it2">
+                        <f:validator binding="#{bindings.Description.validator}"/>
+                    </af:inputText>
+                    <af:inputText value="#{bindings.UsedScreen.inputValue}" label="#{bindings.UsedScreen.hints.label}"
+                                  required="#{bindings.UsedScreen.hints.mandatory}"
+                                  columns="#{bindings.UsedScreen.hints.displayWidth}"
+                                  maximumLength="#{bindings.UsedScreen.hints.precision}"
+                                  shortDesc="#{bindings.UsedScreen.hints.tooltip}" id="it3">
+                        <f:validator binding="#{bindings.UsedScreen.validator}"/>
+                    </af:inputText>
+                    <af:inputText value="#{bindings.Notes.inputValue}" label="#{bindings.Notes.hints.label}"
+                                  required="#{bindings.Notes.hints.mandatory}"
+                                  columns="#{bindings.Notes.hints.displayWidth}"
+                                  maximumLength="#{bindings.Notes.hints.precision}"
+                                  shortDesc="#{bindings.Notes.hints.tooltip}" id="it5">
+                        <f:validator binding="#{bindings.Notes.validator}"/>
+                    </af:inputText>
+                </af:panelFormLayout>
+                <f:facet name="buttonBar"/>
+            </af:dialog>
+        </af:popup>
     </af:group>
 </ui:composition>
