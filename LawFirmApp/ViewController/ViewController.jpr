@@ -93,6 +93,7 @@
          <string v="JSF"/>
          <string v="JSP"/>
          <string v="Java"/>
+         <string v="RESTWebServices"/>
          <string v="TRINIDAD"/>
          <string v="XML"/>
       </list>
@@ -489,6 +490,10 @@
             <value n="id" v="BC4J Oracle Domains"/>
             <value n="isJDK" v="false"/>
          </hash>
+         <hash>
+            <value n="id" v="JAX-RS Jersey 2.x"/>
+            <value n="isJDK" v="false"/>
+         </hash>
       </list>
       <list n="libraryReferences">
          <hash>
@@ -613,6 +618,10 @@
          </hash>
          <hash>
             <value n="id" v="BC4J Oracle Domains"/>
+            <value n="isJDK" v="false"/>
+         </hash>
+         <hash>
+            <value n="id" v="JAX-RS Jersey 2.x"/>
             <value n="isJDK" v="false"/>
          </hash>
       </list>

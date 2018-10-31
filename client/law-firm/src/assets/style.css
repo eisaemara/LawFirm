@@ -1,0 +1,82 @@
+.container {
+    margin: auto;
+}
+
+@media (min-width:768px) {
+    .container {
+        max-width: 750px;
+    }
+}
+
+@media (min-width:992px) {
+    .container {
+        max-width: 970px;
+    }
+}
+
+@media (min-width:1200px) {
+    .container {
+        max-width: 1170px;
+    }
+}
+
+.center {
+    display: flex;
+    align-items: center;
+}
+
+
+/**
+rtl section
+*/
+
+.el-table th,
+.el-table td {
+    text-align: right;
+}
+
+.el-table__expand-icon>.el-icon {
+    margin-left: 0;
+    margin-right: -5px;
+    right: 50%;
+    left: 0;
+}
+
+.el-table__expand-icon>.el-icon.el-icon-arrow-right::before {
+    content: "\E600";
+}
+
+.el-table__expand-icon--expanded {
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+
+.el-card__header {
+    padding-right: 18px;
+    padding-left: 20px;
+}
+
+.el-input-group__append {
+    border-right: 0px;
+    border-left: 1px solid #dcdfe6;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.el-input-group--append .el-input__inner,
+.el-input-group__prepend {
+    border-radius: 4px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+[class*=el-col-] {
+    float: right;
+}
+
+.el-button+.el-button {
+    margin-left: 0px;
+    margin-right: 10px;
+}

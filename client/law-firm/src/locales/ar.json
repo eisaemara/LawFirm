@@ -1,0 +1,15 @@
+{
+    "lookuptypes": {
+        "addlookupType": "إضافة نوع جديد",
+        "lookupTypeTitle": "أنواع الأكواد",
+        "LookupTypeName": "إسم الكود",
+        "LookupTypeAddedBy": "إضافه بواسطة"
+
+
+    },
+    "searchPlaceHolder": "إدخل قيمة",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "AmendedDate": "تاريخ اخر تحديث",
+    "Notes": "ملاحظات"
+}
