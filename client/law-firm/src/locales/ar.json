@@ -3,13 +3,22 @@
         "addlookupType": "إضافة نوع جديد",
         "lookupTypeTitle": "أنواع الأكواد",
         "LookupTypeName": "إسم الكود",
-        "LookupTypeAddedBy": "إضافه بواسطة"
-
+        "LookupTypeAddedBy": "إضافه بواسطة",
+        "LookupType": "نوع الكود",
+        "LookupTypeUsedScreen": "شاشة الظهور",
+        "LookupTypeDetailsTitle": "تفاصيل الكود ",
+        "LookupTypeDetailsAddNew": "إضافة عنصر جديد",
+        "LookupTypeDetailsItemId": "رمز العنصر"
 
     },
     "searchPlaceHolder": "إدخل قيمة",
     "edit": "تعديل",
     "delete": "حذف",
     "AmendedDate": "تاريخ اخر تحديث",
-    "Notes": "ملاحظات"
+    "Notes": "ملاحظات",
+    "Save": "حفظ",
+    "Cancel": "إلغاء",
+    "RequiredMessage": "أدخل قيمة",
+    "DeleteConfirm": "هل تريد إاكمال الحذف",
+    "Confirm": "تأكيد"
 }

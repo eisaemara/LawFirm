@@ -80,3 +80,36 @@ rtl section
     margin-left: 0px;
     margin-right: 10px;
 }
+
+.el-dialog__headerbtn,
+.el-message-box__headerbtn {
+    left: 20px;
+    right: auto;
+}
+
+.el-form.el-form--label-right .el-form-item__label {
+    float: right;
+}
+
+.el-form.el-form--label-right .el-form-item__content {
+    margin-right: 120px;
+    margin-left: unset !important;
+}
+
+.el-form-item.is-required:not(.is-no-asterisk)>.el-form-item__label:before {
+    margin-left: 4px;
+    margin-right: 0px;
+}
+
+.el-form-item__error {
+    right: 0px;
+}
+
+.el-message-box__content {
+    text-align: right;
+}
+
+
+/* .el-form-item__label {
+    float: right;
+} */
