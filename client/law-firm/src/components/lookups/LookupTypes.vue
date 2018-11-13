@@ -8,8 +8,8 @@
     </span>       
           </div></el-col>
           <el-col :xs="4" :sm="6" :md="16" :lg="16" :xl="11"><div class="grid-content">
-           <el-input :placeholder="$t('searchPlaceHolder')"  class="input-with-select">
-           <el-button slot="append" icon="el-icon-search"></el-button>
+           <el-input :placeholder="$t('searchPlaceHolder')"  class="input-with-select" v-model="searchValue">
+           <el-button slot="append" icon="el-icon-search" @click="doSearch"></el-button>
   </el-input>
           </div></el-col>
           <el-col :xs="4" :sm="6" :md="5" :lg="5" :xl="11"><div class="grid-content">
@@ -19,11 +19,11 @@
       </el-row>
   </div>
 <div  class="table-content">
-<el-table height="200"
+<el-table height="200" :empty-text="$t('NoDataToDisplay')"
       :data="lookuptypes" fullwidth highlight-current-row ref="LookupTypeTable"  @current-change="handleCurrentChange">
-    <el-table-column :label="$t('lookuptypes.LookupTypeName')" prop="data.name"/>    
-    <el-table-column :label="$t('lookuptypes.LookupTypeAddedBy')" prop="data.createdBy" />
-     <el-table-column
+    <el-table-column :label="$t('lookuptypes.LookupTypeName')" prop="data.name" width="250"/>    
+    <el-table-column :label="$t('lookuptypes.LookupTypeAddedBy')" prop="data.createdBy" width="100"/>
+     <el-table-column width="100"
       :label="$t('AmendedDate')">
       <template slot-scope="scope">
         <span >{{ formatDate(scope.row.data.lastAmendedDate) }}</span>
@@ -32,11 +32,14 @@
  <el-table-column :label="$t('lookuptypes.LookupTypeUsedScreen')" prop="data.usedScreen" />
  <!-- <el-table-column :label="$t('Notes')" prop="data.notes" /> -->
   
-    <el-table-column  label=" ">
+    <el-table-column  label=" " width="150"> 
       <template slot-scope="scope">
-        <el-button
+        <div style="float:left;">
+<el-button
           size="mini"  @click="onUpdateType(scope.row.type,scope.row.data)"  >{{$t("edit")}}    </el-button>
          <el-button slot="reference" size="mini" type="danger" @click="onRemoveType(scope.row.type)" > {{$t("delete")}} </el-button>   
+        </div>
+        
       </template>
     </el-table-column>
   </el-table>    
@@ -83,6 +86,7 @@ export default {
       formLabelWidth: "120",
       openForCreate: false,
       showDeleteConfirm: false,
+      searchValue: undefined,
       form: {
         type: "",
         name: "",
@@ -125,18 +129,22 @@ export default {
     initData() {
       this.$store.dispatch("Lookups/read");
     },
+    doSearch() {
+      this.$store.dispatch("Lookups/read", this.searchValue);
+    },
+
     handleCurrentChange(val) {
-        this.$log.info('change current row to') ;
-        this.$log.info(val) ;
-        this.$store.dispatch('Lookups/setCurrentRow',val);
+      this.$log.info("change current row to");
+      this.$log.info(val);
+      this.$store.dispatch("Lookups/setCurrentRow", val);
     },
     formatDate(tm) {
-     this.$log.info('attemp to get formatted date from ' + typeof tm );
-     try{
-       return moment(tm.toDate()).format("YYYY-MM-DD");
-     } catch(err){
-       return moment(tm).format("YYYY-MM-DD");    
-     }
+      this.$log.info("attemp to get formatted date from " + typeof tm);
+      try {
+        return moment(tm.toDate()).format("YYYY-MM-DD");
+      } catch (err) {
+        return moment(tm).format("YYYY-MM-DD");
+      }
     },
     addNewType() {
       this.openForCreate = true;
@@ -170,7 +178,7 @@ export default {
         .then(_ => {
           this.$store.dispatch("Lookups/delete", type).then(
             res => {
-              console.log("Delete Done");
+              this.showDeleteSuccessMsg();
             },
             err => console.log("errorss " + err)
           );
@@ -185,7 +193,9 @@ export default {
       });
     },
     saveChanges() {
-      let methodName = "Lookups/".concat((this.openForCreate ? "create" : "update"));
+      let methodName = "Lookups/".concat(
+        this.openForCreate ? "create" : "update"
+      );
       let sendingValue = {
         type: this.form.type,
         data: {
@@ -201,7 +211,8 @@ export default {
 
       this.$store.dispatch(methodName, sendingValue).then(
         res => {
-          console.log(res);
+          this.$log.info("show success message");
+          this.showSaveSuccessMsg();
           this.dialogFormVisible = false;
         },
         error => {

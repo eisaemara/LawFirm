@@ -20,5 +20,15 @@
     "Cancel": "إلغاء",
     "RequiredMessage": "أدخل قيمة",
     "DeleteConfirm": "هل تريد إاكمال الحذف",
-    "Confirm": "تأكيد"
+    "Confirm": "تأكيد",
+    "SaveSuccessMesssage": "تم حفظ البيانات بنجاح",
+    "SaveDeleteSuccessMesssage": "تم حذف البيانات بنجاح",
+    "NoDataToDisplay": "لا يوجد بيانات للعرض",
+    "Customers": "العملاء",
+    "Cases": "القضايا",
+    "Consultations": "الإستشارات",
+    "Companies": "الشركات",
+    "Users": "المستخدمين",
+    "Tasks": "المهام",
+    "Calendar": "التقويم"
 }

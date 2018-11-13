@@ -34,18 +34,18 @@ const mutations = {
     setCurrentRow(state, selectLookupType) {
         state.selectedLookup = selectLookupType;
     },
-    createItem(state, newLookupType) {
-        state.lookupTypes.push(newLookupType);
+    createItem(state, newItem) {
+        state.items.push(newItem);
     },
-    updateItem(state, lookupType) {
-        let updatedLookup = state.lookupTypes.find(nextType => {
-            return nextType.type === lookupType.type;
+    updateItem(state, updatedItem) {
+        let oldItem = state.items.find(e => {
+            return e.itemId === updatedItem.itemId;
         });
-        if (updatedLookup)
-            updatedLookup.data = lookupType.data;
+        if (oldItem)
+            oldItem.data = updatedItem.data;
     },
-    deleteItem(state, lookupTypeId) {
-        state.lookupTypes.splice(state.lookupTypes.findIndex(e => e.type === lookupTypeId), 1);
+    deleteItem(state, itemId) {
+        state.items.splice(state.items.findIndex(e => e.itemId === itemId), 1);
     },
     readItems(state, itemsList) {
         state.items = itemsList;
@@ -90,13 +90,19 @@ const actions = {
     },
     read: ({
         commit
-    }) => {
+    }, searchKey) => {
         lookupsCollection.get().then((querySnapshot) => {
             let loadedCollection = [];
-            querySnapshot.forEach(doc => loadedCollection.push({
-                type: doc.id,
-                data: doc.data()
-            }));
+
+            querySnapshot.forEach(doc => {
+                if (!searchKey || doc.data().name.search(searchKey) != -1) {
+                    loadedCollection.push({
+                        type: doc.id,
+                        data: doc.data()
+                    })
+                }
+
+            });
             commit('read', loadedCollection);
         });
     },
@@ -113,14 +119,14 @@ const actions = {
             commit('readItems', itemsTemp);
         });
     },
-    updateItem: ({ commit, state }, updatedItem) => {
+    updateItem: ({ commit, dispatch, state }, updatedItem) => {
         return new Promise((resolve, reject) => {
             // Do something here... lets say, a http call using vue-resource
             updatedItem.data.lastAmendedDate = new Date();
             updatedItem.data.createdBy = 'admin';
             lookupsCollection.doc(state.selectedLookup.type).collection("items").doc(updatedItem.itemId).set(updatedItem.data).then(response => {
                 resolve(response);
-                // commit('update', lookupType); to update item
+                commit('updateItem', updatedItem);
             }, error => {
                 reject(error);
             })
@@ -132,7 +138,7 @@ const actions = {
     }, newItem) => {
         return new Promise((resolve, reject) => {
             dispatch('updateItem', newItem).then(res => {
-                //commit('create', newLookupType); // TODO added items to current collections
+                commit('createItem', newItem);
                 resolve(res);
             }, err => reject(err));
         });
@@ -140,8 +146,8 @@ const actions = {
     deleteItem: ({ commit, state }, itemId) => {
         return new Promise((resolve, reject) => {
             lookupsCollection.doc(state.selectedLookup.type).collection("items").doc(itemId).delete().then(response => {
+                commit('deleteItem', itemId);
                 resolve(response);
-                // commit('delete', lookupTypeId); TODO
             }, error => {
                 reject(error);
             })

@@ -109,6 +109,17 @@ rtl section
     text-align: right;
 }
 
+.el-message__icon {
+    margin-left: 10px;
+}
+
+.header {
+    font-size: 20px;
+    font-weight: 600;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
 
 /* .el-form-item__label {
     float: right;

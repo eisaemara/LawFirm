@@ -1,7 +1,7 @@
 <template>
   <div>
+     <h1 class="header">شاشة الأكواد</h1>
      <LookupTypes />
-
      <lookup-details style="margin-top:10px" />
   </div>
 </template>

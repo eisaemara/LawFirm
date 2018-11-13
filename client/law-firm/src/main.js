@@ -32,11 +32,37 @@ Vue.use(ElementUI);
 Vue.use(VueRouter);
 Vue.use(VueResource);
 
+var messageMixin = {
+    methods: {
+        showSaveSuccessMsg: function() {
+            this.$message({
+                message: this.$t('SaveSuccessMesssage'),
+                type: 'success'
+            });
+        },
+        showDeleteSuccessMsg: function() {
+            this.$message({
+                message: this.$t('SaveDeleteSuccessMesssage'),
+                type: 'success'
+            });
+        },
+    }
+}
+
+Vue.mixin(messageMixin);
+
 Vue.directive('fullwidth', {
     bind(el) {
         el.style.width = '100%';
     }
 });
+
+Vue.directive('pageheader', {
+    bind(el) {
+        el.style.color = 'white';
+    }
+});
+
 
 
 

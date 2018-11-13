@@ -4,27 +4,30 @@
       <span    style="padding-top: 10px;display: inline-block;">
             {{$t("lookuptypes.LookupTypeDetailsTitle").concat(" ( ").concat(getPageTitle).concat(" ) ") }} 
       </span> 
-  <el-button  style="float:left" icon="el-icon-new" type="primary" @click="onAddItem" >
+  <el-button  style="float:left" icon="el-icon-new" type="primary"
+   @click="onAddItem" :disabled="!getLookupDetails" >
        {{$t("lookuptypes.LookupTypeDetailsAddNew")}}  </el-button>
 
   </div>
 <div  class="table-content">
-<el-table height="200" :data="getLookupDetails" fullwidth>
-    <el-table-column :label="$t('lookuptypes.LookupTypeDetailsItemId')" prop="itemId"/>    
+<el-table height="400" :data="getLookupDetails" fullwidth :empty-text="$t('NoDataToDisplay')">
+    <el-table-column :label="$t('lookuptypes.LookupTypeDetailsItemId')" prop="itemId" />    
     <el-table-column :label="$t('lookuptypes.LookupTypeName')" prop="data.name"/>    
-    <el-table-column :label="$t('lookuptypes.LookupTypeAddedBy')" prop="data.createdBy" />
-     <el-table-column
+    <el-table-column :label="$t('lookuptypes.LookupTypeAddedBy')" prop="data.createdBy"  />
+     <el-table-column 
       :label="$t('AmendedDate')">
       <template slot-scope="scope">
         <span >{{ formatDate(scope.row.data.lastAmendedDate) }}</span>
       </template>
     </el-table-column>
- <!-- <el-table-column :label="$t('Notes')" prop="data.notes" /> --> 
-    <el-table-column  label=" ">
+    <el-table-column  label=" " style="float:left">
       <template slot-scope="scope">
-        <el-button
+        <div style="float:left;">
+<el-button
           size="mini"  @click="onUpdateItem(scope.row.itemId,scope.row.data)"  >{{$t("edit")}}    </el-button>
          <el-button slot="reference" size="mini" type="danger" @click="onRemoveItem(scope.row.itemId)" > {{$t("delete")}} </el-button>   
+        </div>
+        
       </template>
     </el-table-column>
   </el-table>    
@@ -121,9 +124,9 @@ export default {
       this.form = {
         itemId: itemId ? itemId : "",
         name: data ? data.name : "",
-        lastAmendedDate: data.lastAmendedDate ? data.lastAmendedDate : "",
-        createBy: data.createdBy ? data.createdBy : "",
-        notes: data.notes ? data.notes : ""
+        lastAmendedDate: data ? data.lastAmendedDate : "",
+        createBy: data ? data.createdBy : "",
+        notes: data ? data.notes : ""
       };
     },
     onRemoveItem(itemId) {
@@ -134,7 +137,7 @@ export default {
         .then(_ => {
           this.$store.dispatch("Lookups/deleteItem", itemId).then(
             res => {
-              console.log("Delete Done");
+              this.showDeleteSuccessMsg();
             },
             err => console.log("errorss " + err)
           );
@@ -166,7 +169,7 @@ export default {
 
       this.$store.dispatch(methodName, sendingValue).then(
         res => {
-          console.log(res);
+          this.showSaveSuccessMsg();
           this.dialogFormVisible = false;
         },
         error => {
